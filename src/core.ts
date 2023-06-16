@@ -204,7 +204,6 @@ export async function ASNNodeTransformer(
     typescript,
   });
   const identifier = getIdentifier({ name, theme });
-  console.log(identifier);
   if (verbose) {
     console.log();
     console.log(
