@@ -6,7 +6,7 @@ npm install @oceanbase/icons-svg
 
 ## 📢 Requirement
 
-Directory tree should be like this:
+Directory tree should be like below:
 
 ```bash
 ├── package.json
@@ -22,7 +22,7 @@ Directory tree should be like this:
 
 ## 🔨 Usage
 
-- `scripts/generate.ts`:
+`scripts/generate.ts`:
 
 ```ts
 import { resolve } from "path";
@@ -44,7 +44,7 @@ generateIcons();
 ```json
 {
   "scripts": {
-    "build": "npm run generate && father build",
+    "build": "npm run generate && ${YOUR_BUILD_COMMAND}",
     "generate": "rm -rf src && ts-node scripts/generate.ts"
   }
 }
