@@ -34,7 +34,7 @@ describe("1. generate asn string", () => {
     expect(generatedFiles.sort()).toStrictEqual([
       resolveOutput("./asn/LikeFilled.js"),
       resolveOutput("./asn/LikeOutlined.js"),
-      resolveOutput("./asn/LikeTwotone.js"),
+      resolveOutput("./asn/LikeTwoTone.js"),
       resolveOutput("./index.js"),
     ]);
   });
@@ -50,7 +50,7 @@ describe("1. generate asn string", () => {
     expect(generatedFiles.sort()).toStrictEqual([
       resolveOutput("./asn/LikeFilled.ts"),
       resolveOutput("./asn/LikeOutlined.ts"),
-      resolveOutput("./asn/LikeTwotone.ts"),
+      resolveOutput("./asn/LikeTwoTone.ts"),
       resolveOutput("./index.ts"),
       resolveOutput("./types.ts"),
     ]);

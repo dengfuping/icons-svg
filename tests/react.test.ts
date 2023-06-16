@@ -45,7 +45,7 @@ function resolveOutput(...paths: string[]) {
 //     expect(generatedFiles.sort()).toStrictEqual([
 //       resolveOutput("./icons/LikeFilled.jsx"),
 //       resolveOutput("./icons/LikeOutlined.jsx"),
-//       resolveOutput("./icons/LikeTwotone.jsx"),
+//       resolveOutput("./icons/LikeTwoTone.jsx"),
 //       resolveOutput("./index.js"),
 //     ]);
 //   });
@@ -69,7 +69,7 @@ function resolveOutput(...paths: string[]) {
 //       resolveOutput("./components/utils.ts"),
 //       resolveOutput("./icons/LikeFilled.tsx"),
 //       resolveOutput("./icons/LikeOutlined.tsx"),
-//       resolveOutput("./icons/LikeTwotone.tsx"),
+//       resolveOutput("./icons/LikeTwoTone.tsx"),
 //       resolveOutput("./index.ts"),
 //       resolveOutput("./types.ts"),
 //     ]);
@@ -95,7 +95,7 @@ function resolveSvg(...paths: string[]) {
 //     expect(generatedFiles.sort()).toStrictEqual([
 //       resolveOutput("./asn/LikeFilled.ts"),
 //       resolveOutput("./asn/LikeOutlined.ts"),
-//       resolveOutput("./asn/LikeTwotone.ts"),
+//       resolveOutput("./asn/LikeTwoTone.ts"),
 //       resolveOutput("./components/AntdIcon.tsx"),
 //       resolveOutput("./components/Icon.tsx"),
 //       resolveOutput("./components/IconBase.tsx"),
@@ -104,7 +104,7 @@ function resolveSvg(...paths: string[]) {
 //       resolveOutput("./components/utils.ts"),
 //       resolveOutput("./icons/LikeFilled.tsx"),
 //       resolveOutput("./icons/LikeOutlined.tsx"),
-//       resolveOutput("./icons/LikeTwotone.tsx"),
+//       resolveOutput("./icons/LikeTwoTone.tsx"),
 //       resolveOutput("./index.ts"),
 //       resolveOutput("./types.ts"),
 //     ]);
@@ -121,7 +121,7 @@ function resolveSvg(...paths: string[]) {
 //     expect(generatedFiles.sort()).toStrictEqual([
 //       resolveOutput("./asn/LikeFilled.js"),
 //       resolveOutput("./asn/LikeOutlined.js"),
-//       resolveOutput("./asn/LikeTwotone.js"),
+//       resolveOutput("./asn/LikeTwoTone.js"),
 //       resolveOutput("./components/AntdIcon.jsx"),
 //       resolveOutput("./components/Icon.jsx"),
 //       resolveOutput("./components/IconBase.jsx"),
@@ -130,7 +130,7 @@ function resolveSvg(...paths: string[]) {
 //       resolveOutput("./components/utils.js"),
 //       resolveOutput("./icons/LikeFilled.jsx"),
 //       resolveOutput("./icons/LikeOutlined.jsx"),
-//       resolveOutput("./icons/LikeTwotone.jsx"),
+//       resolveOutput("./icons/LikeTwoTone.jsx"),
 //       resolveOutput("./index.js"),
 //     ]);
 //   });
@@ -187,7 +187,7 @@ function resolveSvg(...paths: string[]) {
 //       // asn package
 //       resolveOutput("./packages/asn/src/asn/LikeFilled.ts"),
 //       resolveOutput("./packages/asn/src/asn/LikeOutlined.ts"),
-//       resolveOutput("./packages/asn/src/asn/LikeTwotone.ts"),
+//       resolveOutput("./packages/asn/src/asn/LikeTwoTone.ts"),
 //       resolveOutput("./packages/asn/src/index.ts"),
 //       resolveOutput("./packages/asn/src/types.ts"),
 //       // react icon package
@@ -199,7 +199,7 @@ function resolveSvg(...paths: string[]) {
 //       resolveOutput("./packages/icons/src/components/utils.ts"),
 //       resolveOutput("./packages/icons/src/icons/LikeFilled.tsx"),
 //       resolveOutput("./packages/icons/src/icons/LikeOutlined.tsx"),
-//       resolveOutput("./packages/icons/src/icons/LikeTwotone.tsx"),
+//       resolveOutput("./packages/icons/src/icons/LikeTwoTone.tsx"),
 //       resolveOutput("./packages/icons/src/index.ts"),
 //       resolveOutput("./packages/icons/src/types.ts"),
 //     ]);
@@ -220,7 +220,7 @@ describe("4. react icon repo", () => {
     expect(generatedFiles.sort()).toStrictEqual([
       resolveOutput("./src/asn/LikeFilled.ts"),
       resolveOutput("./src/asn/LikeOutlined.ts"),
-      resolveOutput("./src/asn/LikeTwotone.ts"),
+      resolveOutput("./src/asn/LikeTwoTone.ts"),
       resolveOutput("./src/components/AntdIcon.tsx"),
       resolveOutput("./src/components/Icon.tsx"),
       resolveOutput("./src/components/IconBase.tsx"),
@@ -229,7 +229,7 @@ describe("4. react icon repo", () => {
       resolveOutput("./src/components/utils.ts"),
       resolveOutput("./src/icons/LikeFilled.tsx"),
       resolveOutput("./src/icons/LikeOutlined.tsx"),
-      resolveOutput("./src/icons/LikeTwotone.tsx"),
+      resolveOutput("./src/icons/LikeTwoTone.tsx"),
       resolveOutput("./src/index.ts"),
       resolveOutput("./src/types.ts"),
     ]);
@@ -246,7 +246,7 @@ describe("4. react icon repo", () => {
     expect(generatedFiles.sort()).toStrictEqual([
       resolveOutput("./src/asn/LikeFilled.js"),
       resolveOutput("./src/asn/LikeOutlined.js"),
-      resolveOutput("./src/asn/LikeTwotone.js"),
+      resolveOutput("./src/asn/LikeTwoTone.js"),
       resolveOutput("./src/components/AntdIcon.jsx"),
       resolveOutput("./src/components/Icon.jsx"),
       resolveOutput("./src/components/IconBase.jsx"),
@@ -255,7 +255,7 @@ describe("4. react icon repo", () => {
       resolveOutput("./src/components/utils.js"),
       resolveOutput("./src/icons/LikeFilled.jsx"),
       resolveOutput("./src/icons/LikeOutlined.jsx"),
-      resolveOutput("./src/icons/LikeTwotone.jsx"),
+      resolveOutput("./src/icons/LikeTwoTone.jsx"),
       resolveOutput("./src/index.js"),
     ]);
   });
