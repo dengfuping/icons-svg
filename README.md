@@ -16,7 +16,7 @@ Directory tree should be like this:
 ├── svg
 │   ├── filled
 │   ├── outlined
-│   ├── two-tone
+│   ├── twotone
 │   └── colored
 ```
 

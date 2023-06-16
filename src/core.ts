@@ -21,7 +21,7 @@ import {
 
 const DEFAULT_SVG_CONFIG_MAP: { [key: string]: any } = {
   // match the directory name of icon type
-  "two-tone": remainFillConfig,
+  twotone: remainFillConfig,
   colored: remainFillConfig,
 };
 const SVG_CONFIG_MAP = new Proxy(DEFAULT_SVG_CONFIG_MAP, {
@@ -105,7 +105,11 @@ export function createAsnFileContent(
   }) => {
     const identifier = getIdentifier({
       name,
-      theme: theme ? upperFirst(theme) : undefined,
+      theme: theme
+        ? theme === "twotone"
+          ? "TwoTone"
+          : upperFirst(theme)
+        : undefined,
     });
     return {
       identifier,

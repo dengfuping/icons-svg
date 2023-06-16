@@ -20,14 +20,14 @@ export function renderIconDefinitionToSVGElement(
   options: HelperRenderOptions = {}
 ): string {
   if (typeof icond.icon === "function") {
-    // two-tone
+    // twotone
     const placeholders = options.placeholders || defaultColors;
     return renderAbstractNodeToSVGElement(
       icond.icon(placeholders.primaryColor, placeholders.secondaryColor),
       options
     );
   }
-  // fill, outline
+  // fill, outline, colored
   return renderAbstractNodeToSVGElement(icond.icon, options);
 }
 

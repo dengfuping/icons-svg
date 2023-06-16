@@ -13,8 +13,8 @@ export interface IconProps {
   className?: string;
   onClick?: React.MouseEventHandler<SVGSVGElement>;
   style?: React.CSSProperties;
-  primaryColor?: string; // only for two-tone
-  secondaryColor?: string; // only for two-tone
+  primaryColor?: string; // only for twotone
+  secondaryColor?: string; // only for twotone
   focusable?: string;
 }
 
