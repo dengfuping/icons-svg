@@ -22,7 +22,8 @@ export interface GetIdentifierType {
  * like + Colored -> LikeColored
  */
 export const getIdentifier: GetIdentifierType = pipe(
-  ({ name, theme }: IdentifierMeta) => name + (theme ? `-${theme}` : ""),
+  ({ name, theme }: IdentifierMeta) =>
+    name + (theme ? `-${theme === "twotone" ? "TwoTone" : theme}` : ""),
   camelCase,
   upperFirst
 );

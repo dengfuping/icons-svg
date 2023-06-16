@@ -105,11 +105,7 @@ export function createAsnFileContent(
   }) => {
     const identifier = getIdentifier({
       name,
-      theme: theme
-        ? theme === "twotone"
-          ? "TwoTone"
-          : upperFirst(theme)
-        : undefined,
+      theme,
     });
     return {
       identifier,
@@ -208,6 +204,7 @@ export async function ASNNodeTransformer(
     typescript,
   });
   const identifier = getIdentifier({ name, theme });
+  console.log(identifier);
   if (verbose) {
     console.log();
     console.log(
