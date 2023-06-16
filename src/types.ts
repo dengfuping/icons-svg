@@ -14,5 +14,10 @@ export interface IconDefinition {
     | AbstractNode;
 }
 
-export type ThemeType = 'filled' | 'outlined' | 'twotone' | 'svg';
-export type ThemeTypeUpperCase = 'Filled' | 'Outlined' | 'TwoTone' | 'Svg';
+export type ThemeType = "filled" | "outlined" | "two-tone" | "colored" | "svg";
+export type ThemeTypeUpperCase =
+  | "Filled"
+  | "Outlined"
+  | "TwoTone"
+  | "Colored"
+  | "Svg";
