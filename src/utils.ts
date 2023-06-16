@@ -19,6 +19,7 @@ export interface GetIdentifierType {
  * like + Outlined -> LikeOutlined
  * like + Filled -> LikeFilled
  * like + TowTone -> LikeTowTone
+ * like + Colored -> LikeColored
  */
 export const getIdentifier: GetIdentifierType = pipe(
   ({ name, theme }: IdentifierMeta) => name + (theme ? `-${theme}` : ""),
