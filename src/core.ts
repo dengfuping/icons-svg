@@ -20,7 +20,8 @@ import {
 } from "./constant";
 
 const DEFAULT_SVG_CONFIG_MAP: { [key: string]: any } = {
-  twotone: remainFillConfig,
+  // match the directory name of icon type
+  "two-tone": remainFillConfig,
 };
 const SVG_CONFIG_MAP = new Proxy(DEFAULT_SVG_CONFIG_MAP, {
   get(target, key: ThemeType) {

@@ -18,6 +18,7 @@ export interface GetIdentifierType {
  * 根据 name 和 theme 生成驼峰命名
  * like + Outlined -> LikeOutlined
  * like + Filled -> LikeFilled
+ * like + TowTone -> LikeTowTone
  */
 export const getIdentifier: GetIdentifierType = pipe(
   ({ name, theme }: IdentifierMeta) => name + (theme ? `-${theme}` : ""),
