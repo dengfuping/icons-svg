@@ -4,7 +4,7 @@ export function setTwoToneColor(twoToneColor) {
   const [primaryColor, secondaryColor] = normalizeTwoToneColors(twoToneColor);
   return ReactIcon.setTwoToneColors({
     primaryColor,
-    secondaryColor
+    secondaryColor,
   });
 }
 export function getTwoToneColor() {

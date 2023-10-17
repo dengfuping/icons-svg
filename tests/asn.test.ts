@@ -1,12 +1,12 @@
-import { statSync } from "fs";
-import globby from "globby";
-import { resolve } from "path";
-import rimraf from "rimraf";
+import { statSync } from 'fs';
+import globby from 'globby';
+import { resolve } from 'path';
+import rimraf from 'rimraf';
 
-import { ASNFilesGenerator } from "../src/asn";
+import { ASNFilesGenerator } from '../src/asn';
 
-const ICON_ROOT_DIR = resolve(__dirname, "./fixtures/svg");
-const OUTPUT_DIR = resolve(__dirname, "./output");
+const ICON_ROOT_DIR = resolve(__dirname, './fixtures/svg');
+const OUTPUT_DIR = resolve(__dirname, './output');
 function resolveSvg(...paths: string[]) {
   return resolve(ICON_ROOT_DIR, ...paths);
 }
@@ -23,36 +23,36 @@ afterEach(async () => {
   }
 });
 
-describe("1. generate asn string", () => {
-  it("javascript file", async () => {
+describe('1. generate asn string', () => {
+  it('javascript file', async () => {
     await ASNFilesGenerator({
       entry: ICON_ROOT_DIR,
       output: OUTPUT_DIR,
     });
 
-    const generatedFiles = await globby(resolve(OUTPUT_DIR, "**", "*.js"));
+    const generatedFiles = await globby(resolve(OUTPUT_DIR, '**', '*.js'));
     expect(generatedFiles.sort()).toStrictEqual([
-      resolveOutput("./asn/LikeFilled.js"),
-      resolveOutput("./asn/LikeOutlined.js"),
-      resolveOutput("./asn/LikeTwoTone.js"),
-      resolveOutput("./index.js"),
+      resolveOutput('./asn/LikeFilled.js'),
+      resolveOutput('./asn/LikeOutlined.js'),
+      resolveOutput('./asn/LikeTwoTone.js'),
+      resolveOutput('./index.js'),
     ]);
   });
 
-  it("typescript file", async () => {
+  it('typescript file', async () => {
     await ASNFilesGenerator({
       entry: ICON_ROOT_DIR,
       output: OUTPUT_DIR,
       typescript: true,
     });
 
-    const generatedFiles = await globby(resolve(OUTPUT_DIR, "**", "*.ts"));
+    const generatedFiles = await globby(resolve(OUTPUT_DIR, '**', '*.ts'));
     expect(generatedFiles.sort()).toStrictEqual([
-      resolveOutput("./asn/LikeFilled.ts"),
-      resolveOutput("./asn/LikeOutlined.ts"),
-      resolveOutput("./asn/LikeTwoTone.ts"),
-      resolveOutput("./index.ts"),
-      resolveOutput("./types.ts"),
+      resolveOutput('./asn/LikeFilled.ts'),
+      resolveOutput('./asn/LikeOutlined.ts'),
+      resolveOutput('./asn/LikeTwoTone.ts'),
+      resolveOutput('./index.ts'),
+      resolveOutput('./types.ts'),
     ]);
   });
 });

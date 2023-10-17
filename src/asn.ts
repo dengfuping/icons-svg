@@ -1,29 +1,27 @@
 /**
  * @file ASN 文件的生成
  */
-import { readFileSync, writeFileSync } from "fs";
-import { resolve } from "path";
+import { readFileSync, writeFileSync } from 'fs';
+import { resolve } from 'path';
 
-import globby from "globby";
-import chalk from "chalk";
+import globby from 'globby';
+import chalk from 'chalk';
 
-import { ensure, existing, generateTypeFiles } from "./utils";
-import { ANSOutputTransformer } from "./core";
+import { ensure, existing, generateTypeFiles } from './utils';
+import { ANSOutputTransformer } from './core';
 /**
  * SVG 文件读取器
  */
 export async function SVGFilesReader({
   entry,
-}: Partial<ASNFilesGeneratorOptions>): Promise<
-  { filepath: string; content: string }[]
-> {
+}: Partial<ASNFilesGeneratorOptions>): Promise<{ filepath: string; content: string }[]> {
   if (!existing(entry)) {
     return Promise.reject(new Error(`${entry} is not existing.`));
   }
-  const pattern = resolve(entry!, "**", "*.svg").replace(/\\/g, "/");
+  const pattern = resolve(entry!, '**', '*.svg').replace(/\\/g, '/');
   const SVGFilepaths = globby.sync(pattern);
-  return SVGFilepaths.map((SVGFile) => {
-    const SVGContent = readFileSync(SVGFile, "utf-8");
+  return SVGFilepaths.map(SVGFile => {
+    const SVGContent = readFileSync(SVGFile, 'utf-8');
     return {
       filepath: SVGFile,
       content: SVGContent,
@@ -70,7 +68,7 @@ export async function ASNFilesGenerator({
   const SVGFiles = await SVGFilesReader({ entry });
   if (verbose) {
     console.log();
-    console.log(chalk.greenBright("[ASNFilesGenerator]SVG files"), SVGFiles);
+    console.log(chalk.greenBright('[ASNFilesGenerator]SVG files'), SVGFiles);
     console.log();
   }
   const ASNOutput = await ANSOutputTransformer({
@@ -80,7 +78,7 @@ export async function ASNFilesGenerator({
     verbose,
   });
   const { entryFile: ASNEntryFile, ASNNodes } = ASNOutput;
-  const ASNOutputDir = resolve(output, ASNDirName || "asn");
+  const ASNOutputDir = resolve(output, ASNDirName || 'asn');
   ensure(ASNOutputDir);
 
   // generate index.ts
@@ -90,7 +88,7 @@ export async function ASNFilesGenerator({
     const { filename, content } = ASNNodes[i];
     const asnFilepath = resolve(ASNOutputDir, filename);
     if (verbose) {
-      console.log(chalk.gray("[ASNFilesGenerator]write ASN file"), asnFilepath);
+      console.log(chalk.gray('[ASNFilesGenerator]write ASN file'), asnFilepath);
     }
     writeFileSync(asnFilepath, content);
   }

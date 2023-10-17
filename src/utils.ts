@@ -1,9 +1,9 @@
-import { parse, basename, dirname, resolve } from "path";
-import { statSync, mkdirSync, readFileSync, writeFileSync } from "fs";
+import { parse, basename, dirname, resolve } from 'path';
+import { statSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
 
-import upperFirst from "lodash.upperfirst";
-import camelCase from "lodash.camelcase";
-import { pipe } from "ramda";
+import upperFirst from 'lodash.upperfirst';
+import camelCase from 'lodash.camelcase';
+import { pipe } from 'ramda';
 
 export interface IdentifierMeta {
   name: string;
@@ -23,7 +23,7 @@ export interface GetIdentifierType {
  */
 export const getIdentifier: GetIdentifierType = pipe(
   ({ name, theme }: IdentifierMeta) =>
-    name + (theme ? `-${theme === "twotone" ? "TwoTone" : theme}` : ""),
+    name + (theme ? `-${theme === 'twotone' ? 'TwoTone' : theme}` : ''),
   camelCase,
   upperFirst
 );
@@ -83,33 +83,21 @@ export function checkIsNpmPackage(filepath: string) {
   const firstChar = filepath.charAt(0);
   const secondChar = filepath.charAt(1);
   // ./path、/path
-  if ([".", "/"].includes(firstChar)) {
+  if (['.', '/'].includes(firstChar)) {
     return false;
   }
   // @/path
-  if (["@"].includes(firstChar) && ["/"].includes(secondChar)) {
+  if (['@'].includes(firstChar) && ['/'].includes(secondChar)) {
     return false;
   }
   return true;
 }
 
-export function ext(
-  typescript?: boolean,
-  prefix: string = "",
-  suffix: string = ""
-) {
+export function ext(typescript?: boolean, prefix: string = '', suffix: string = '') {
   return typescript ? `${prefix}.ts${suffix}` : `${prefix}.js${suffix}`;
 }
 
-const TYPES_FILE_CONTENT = readFileSync(
-  resolve(__dirname, "./types.ts"),
-  "utf-8"
-);
-export function generateTypeFiles({
-  output,
-}: {
-  output: string;
-  filename?: string;
-}) {
-  writeFileSync(resolve(output, "types.ts"), TYPES_FILE_CONTENT);
+const TYPES_FILE_CONTENT = readFileSync(resolve(__dirname, './types.ts'), 'utf-8');
+export function generateTypeFiles({ output }: { output: string; filename?: string }) {
+  writeFileSync(resolve(output, 'types.ts'), TYPES_FILE_CONTENT);
 }

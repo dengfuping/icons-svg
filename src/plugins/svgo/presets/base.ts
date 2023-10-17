@@ -42,6 +42,6 @@ export const base: SVGO.Options = {
     { mergePaths: true },
     { convertShapeToPath: true },
     { sortAttrs: true },
-    { removeDimensions: true }
-  ]
+    { removeDimensions: true },
+  ],
 };

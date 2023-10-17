@@ -30,10 +30,7 @@ function createScriptUrlElements(scriptUrls, index = 0) {
 }
 
 export default function create(options = {}) {
-  const {
-    scriptUrl,
-    extraCommonProps = {}
-  } = options;
+  const { scriptUrl, extraCommonProps = {} } = options;
   /**
    * DOM API required.
    * Make sure in browser environment.
@@ -41,7 +38,12 @@ export default function create(options = {}) {
    * that loads SVG symbols and insert the SVG Element into the document body.
    */
 
-  if (scriptUrl && typeof document !== 'undefined' && typeof window !== 'undefined' && typeof document.createElement === 'function') {
+  if (
+    scriptUrl &&
+    typeof document !== 'undefined' &&
+    typeof window !== 'undefined' &&
+    typeof document.createElement === 'function'
+  ) {
     if (Array.isArray(scriptUrl)) {
       // 因为iconfont资源会把svg插入before，所以前加载相同type会覆盖后加载，为了数组覆盖顺序，倒叙插入
       createScriptUrlElements(scriptUrl.reverse());
@@ -51,11 +53,7 @@ export default function create(options = {}) {
   }
 
   const Iconfont = React.forwardRef((props, ref) => {
-    const {
-      type,
-      children,
-      ...restProps
-    } = props; // children > type
+    const { type, children, ...restProps } = props; // children > type
 
     let content = null;
 
@@ -67,9 +65,11 @@ export default function create(options = {}) {
       content = children;
     }
 
-    return <Icon {...extraCommonProps} {...restProps} ref={ref}>
-                    {content}
-                </Icon>;
+    return (
+      <Icon {...extraCommonProps} {...restProps} ref={ref}>
+        {content}
+      </Icon>
+    );
   });
   Iconfont.displayName = 'Iconfont';
   return Iconfont;

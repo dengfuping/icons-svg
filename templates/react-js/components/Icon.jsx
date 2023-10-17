@@ -1,13 +1,13 @@
 /*
- * @Description: 
+ * @Description:
  * @Author: Sufaith
  * @Date: 2021-09-15 18:41:08
  * @LastEditors: Sufaith
  * @LastEditTime: 2022-05-04 21:02:12
  */
-import * as React from "react";
-import classNames from "classnames";
-import { warning, svgBaseProps } from "./utils";
+import * as React from 'react';
+import classNames from 'classnames';
+import { warning, svgBaseProps } from './utils';
 const Icon = React.forwardRef((props, ref) => {
   const {
     // affect outter <i>...</i>
@@ -25,32 +25,28 @@ const Icon = React.forwardRef((props, ref) => {
   } = props;
 
   if (!!Component || !!children) {
-    console.error("Should have `component` prop or `children`.");
+    console.error('Should have `component` prop or `children`.');
   } // warning(
   //   Boolean(Component || children),
   //   'Should have `component` prop or `children`.',
   // );
   // useInsertStyles();
 
-
-  const classString = classNames("anticon", className);
+  const classString = classNames('anticon', className);
   const svgClassString = classNames({
-    "anticon-spin": !!spin
+    'anticon-spin': !!spin,
   });
-  const svgStyle = rotate ? {
-    msTransform: `rotate(${rotate}deg)`,
-    transform: `rotate(${rotate}deg)`
-  } : undefined;
-  const innerSvgProps = { ...svgBaseProps,
-    className: svgClassString,
-    style: svgStyle,
-    viewBox
-  };
+  const svgStyle = rotate
+    ? {
+        msTransform: `rotate(${rotate}deg)`,
+        transform: `rotate(${rotate}deg)`,
+      }
+    : undefined;
+  const innerSvgProps = { ...svgBaseProps, className: svgClassString, style: svgStyle, viewBox };
 
   if (!viewBox) {
     delete innerSvgProps.viewBox;
   } // component > children
-
 
   const renderInnerNode = () => {
     if (Component) {
@@ -59,10 +55,19 @@ const Icon = React.forwardRef((props, ref) => {
     }
 
     if (children) {
-      warning(Boolean(viewBox) || React.Children.count(children) === 1 && React.isValidElement(children) && React.Children.only(children).type === "use", "Make sure that you provide correct `viewBox`" + " prop (default `0 0 1024 1024`) to the icon.");
-      return <svg {...innerSvgProps} viewBox={viewBox}>
-            {children}
-          </svg>;
+      warning(
+        Boolean(viewBox) ||
+          (React.Children.count(children) === 1 &&
+            React.isValidElement(children) &&
+            React.Children.only(children).type === 'use'),
+        'Make sure that you provide correct `viewBox`' +
+          ' prop (default `0 0 1024 1024`) to the icon.'
+      );
+      return (
+        <svg {...innerSvgProps} viewBox={viewBox}>
+          {children}
+        </svg>
+      );
     }
 
     return null;
@@ -74,9 +79,18 @@ const Icon = React.forwardRef((props, ref) => {
     iconTabIndex = -1;
   }
 
-  return <span role="img" {...restProps} ref={ref} tabIndex={iconTabIndex} onClick={onClick} className={classString}>
-        {renderInnerNode()}
-      </span>;
+  return (
+    <span
+      role="img"
+      {...restProps}
+      ref={ref}
+      tabIndex={iconTabIndex}
+      onClick={onClick}
+      className={classString}
+    >
+      {renderInnerNode()}
+    </span>
+  );
 });
-Icon.displayName = "AntdIcon";
+Icon.displayName = 'AntdIcon';
 export default Icon;

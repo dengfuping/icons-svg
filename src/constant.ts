@@ -1,13 +1,13 @@
-import { readFileSync } from "fs";
-import { resolve } from "path";
+import { readFileSync } from 'fs';
+import { resolve } from 'path';
 
-import template from "lodash.template";
+import template from 'lodash.template';
 
 const THIS_ROOT_DIR = resolve(__dirname);
-export const TEMPLATES_DIR = resolve(THIS_ROOT_DIR, "../templates");
+export const TEMPLATES_DIR = resolve(THIS_ROOT_DIR, '../templates');
 
-export const REACT_TS_ICON_COMPONENTS_DIR = resolve(TEMPLATES_DIR, "react-ts");
-export const REACT_JS_ICON_COMPONENTS_DIR = resolve(TEMPLATES_DIR, "react-js");
+export const REACT_TS_ICON_COMPONENTS_DIR = resolve(TEMPLATES_DIR, 'react-ts');
+export const REACT_JS_ICON_COMPONENTS_DIR = resolve(TEMPLATES_DIR, 'react-js');
 
 export function r(...paths: string[]) {
   return resolve(THIS_ROOT_DIR, ...paths);
@@ -40,9 +40,5 @@ const <%= svgIdentifier %> = (
 <%= svgIdentifier %>.displayName = '<%= svgIdentifier %>';
 export default React.forwardRef(<%= svgIdentifier %>);`;
 
-export const reactTsIconComponentRenderer = template(
-  REACT_TS_ICON_COMPONENT_TEMPLATE
-);
-export const reactJsIconComponentRenderer = template(
-  REACT_JS_ICON_COMPONENT_TEMPLATE
-);
+export const reactTsIconComponentRenderer = template(REACT_TS_ICON_COMPONENT_TEMPLATE);
+export const reactJsIconComponentRenderer = template(REACT_JS_ICON_COMPONENT_TEMPLATE);

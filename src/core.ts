@@ -1,23 +1,20 @@
-import SVGO from "svgo";
+import SVGO from 'svgo';
 
-import template from "lodash.template";
-import upperFirst from "lodash.upperfirst";
-import chalk from "chalk";
+import template from 'lodash.template';
+import upperFirst from 'lodash.upperfirst';
+import chalk from 'chalk';
 
-import { asnGenerator } from "./plugins/svg2Definition";
-import { generalConfig, remainFillConfig } from "./plugins/svgo/presets";
+import { asnGenerator } from './plugins/svg2Definition';
+import { generalConfig, remainFillConfig } from './plugins/svgo/presets';
 import {
   assignAttrsAtTag,
   adjustViewBox,
   setDefaultColorAtPathTag,
-} from "./plugins/svg2Definition/transforms";
-import { twotoneStringify } from "./plugins/svg2Definition/stringify";
-import { ThemeType } from "./types";
-import { getNameAndThemeFromPath, getIdentifier, ext } from "./utils";
-import {
-  reactJsIconComponentRenderer,
-  reactTsIconComponentRenderer,
-} from "./constant";
+} from './plugins/svg2Definition/transforms';
+import { twotoneStringify } from './plugins/svg2Definition/stringify';
+import { ThemeType } from './types';
+import { getNameAndThemeFromPath, getIdentifier, ext } from './utils';
+import { reactJsIconComponentRenderer, reactTsIconComponentRenderer } from './constant';
 
 const DEFAULT_SVG_CONFIG_MAP: { [key: string]: any } = {
   // match the directory name of icon type
@@ -43,14 +40,14 @@ export async function svg2asn(svg: string, name: string, theme: string) {
   const optimizer = new SVGO(SVG_CONFIG_MAP[theme]);
   const { data } = await optimizer.optimize(svg);
 
-  if (theme === "twotone") {
+  if (theme === 'twotone') {
     return asnGenerator(data, {
       name,
       theme,
       extraNodeTransformFactories: [
-        assignAttrsAtTag("svg", { focusable: "false" }),
+        assignAttrsAtTag('svg', { focusable: 'false' }),
         adjustViewBox,
-        setDefaultColorAtPathTag("#333"),
+        setDefaultColorAtPathTag('#333'),
       ],
       stringify: twotoneStringify,
     });
@@ -58,10 +55,7 @@ export async function svg2asn(svg: string, name: string, theme: string) {
   return asnGenerator(data, {
     name,
     theme,
-    extraNodeTransformFactories: [
-      assignAttrsAtTag("svg", { focusable: "false" }),
-      adjustViewBox,
-    ],
+    extraNodeTransformFactories: [assignAttrsAtTag('svg', { focusable: 'false' }), adjustViewBox],
     stringify: JSON.stringify,
   });
 }
@@ -89,20 +83,10 @@ export default <%= identifier %>;`;
  */
 export function createAsnFileContent(
   asn: string,
-  {
-    name,
-    theme,
-    typescript,
-  }: { name: string; theme: string; typescript?: boolean }
+  { name, theme, typescript }: { name: string; theme: string; typescript?: boolean }
 ) {
   // console.log("[CORE]createAsnFile", asn, typeof asn);
-  const mapToInterpolate = ({
-    name,
-    content,
-  }: {
-    name: string;
-    content: string;
-  }) => {
+  const mapToInterpolate = ({ name, content }: { name: string; content: string }) => {
     const identifier = getIdentifier({
       name,
       theme,
@@ -113,9 +97,9 @@ export function createAsnFileContent(
       typescript,
     };
   };
-  return template(
-    typescript ? ASN_TS_FILE_CONTENT_TEMPLATE : ASN_JS_FILE_CONTENT_TEMPLATE
-  )(mapToInterpolate({ name, content: asn }));
+  return template(typescript ? ASN_TS_FILE_CONTENT_TEMPLATE : ASN_JS_FILE_CONTENT_TEMPLATE)(
+    mapToInterpolate({ name, content: asn })
+  );
 }
 
 interface ASNGeneratorOptions {
@@ -191,7 +175,7 @@ export async function ASNNodeTransformer(
   if (verbose) {
     console.log();
     console.log(
-      chalk.greenBright("[ASNNodeTransformer]before invoke svg2asn"),
+      chalk.greenBright('[ASNNodeTransformer]before invoke svg2asn'),
       content,
       name,
       theme
@@ -206,11 +190,7 @@ export async function ASNNodeTransformer(
   const identifier = getIdentifier({ name, theme });
   if (verbose) {
     console.log();
-    console.log(
-      chalk.greenBright("[ASNNodeTransformer]result"),
-      identifier,
-      asnFileContent
-    );
+    console.log(chalk.greenBright('[ASNNodeTransformer]result'), identifier, asnFileContent);
   }
   return {
     filename: identifier + ext(typescript),
@@ -221,8 +201,7 @@ export async function ASNNodeTransformer(
   };
 }
 
-const NAME_EXPORT_TEMPLATE =
-  "export { default as <%= identifier %> } from '<%= path %>';";
+const NAME_EXPORT_TEMPLATE = "export { default as <%= identifier %> } from '<%= path %>';";
 /**
  * generate src/index.ts file
  * @example
@@ -238,11 +217,11 @@ export function entryRenderer<T = string>(
   }
 ) {
   const fileContent = files
-    .map((file) => {
+    .map(file => {
       const { identifier, path } = parse(file);
       return template(NAME_EXPORT_TEMPLATE)({ identifier, path });
     })
-    .join("\n");
+    .join('\n');
   return fileContent;
 }
 
@@ -314,12 +293,12 @@ export async function ANSOutputTransformer({
   }
 
   const entryFileContent = entryRenderer(ASNNodes, {
-    parse: (ASNNode) => {
+    parse: ASNNode => {
       const { identifier } = ASNNode;
       return {
         identifier,
         // @TODO
-        path: `./${ASNDirName || "asn"}/${identifier}`,
+        path: `./${ASNDirName || 'asn'}/${identifier}`,
       };
     },
   });
@@ -334,10 +313,7 @@ export async function ANSOutputTransformer({
 }
 
 interface ReactIconTransformerOptions
-  extends Pick<
-    ReactIconsOutputTransformerOptions,
-    "ASNFilepath" | "typescript"
-  > {
+  extends Pick<ReactIconsOutputTransformerOptions, 'ASNFilepath' | 'typescript'> {
   identifier: string;
 }
 
@@ -349,15 +325,13 @@ export function reactIconTransformer({
   identifier,
   typescript,
 }: ReactIconTransformerOptions) {
-  const renderer = typescript
-    ? reactTsIconComponentRenderer
-    : reactJsIconComponentRenderer;
+  const renderer = typescript ? reactTsIconComponentRenderer : reactJsIconComponentRenderer;
   const reactIconComponentContent = renderer({
     iconsPath: ASNFilepath,
     svgIdentifier: identifier,
   });
   return {
-    filename: identifier + ext(typescript, "", "x"),
+    filename: identifier + ext(typescript, '', 'x'),
     identifier,
     content: reactIconComponentContent,
   };
@@ -396,12 +370,12 @@ export async function reactIconsOutputTransformer({
   }
 
   const entryFileContent = entryRenderer(reactIcons, {
-    parse: (reactIcon) => {
+    parse: reactIcon => {
       const { identifier } = reactIcon;
       return {
         identifier,
         // @TODO
-        path: `./${iconsDirName || "icons"}/${identifier}`,
+        path: `./${iconsDirName || 'icons'}/${identifier}`,
       };
     },
   });

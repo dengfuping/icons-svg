@@ -1,17 +1,17 @@
-import { statSync } from "fs";
-import globby from "globby";
-import { resolve } from "path";
-import rimraf from "rimraf";
+import { statSync } from 'fs';
+import globby from 'globby';
+import { resolve } from 'path';
+import rimraf from 'rimraf';
 
 import {
   reactIconsGenerator,
   reactIconsGeneratorFromSVGDir,
   singleReactIconGenerator,
-} from "../src/react";
+} from '../src/react';
 
-const JS_ICON_ROOT_DIR = resolve(__dirname, "./fixtures/asn-js");
-const TS_ICON_ROOT_DIR = resolve(__dirname, "./fixtures/asn-ts");
-const OUTPUT_DIR = resolve(__dirname, "./output");
+const JS_ICON_ROOT_DIR = resolve(__dirname, './fixtures/asn-js');
+const TS_ICON_ROOT_DIR = resolve(__dirname, './fixtures/asn-ts');
+const OUTPUT_DIR = resolve(__dirname, './output');
 function resolveJsIcon(...paths: string[]) {
   return resolve(JS_ICON_ROOT_DIR, ...paths);
 }
@@ -76,7 +76,7 @@ function resolveOutput(...paths: string[]) {
 //   });
 // });
 
-const ICON_ROOT_DIR = resolve(__dirname, "./fixtures/svg");
+const ICON_ROOT_DIR = resolve(__dirname, './fixtures/svg');
 function resolveSvg(...paths: string[]) {
   return resolve(ICON_ROOT_DIR, ...paths);
 }
@@ -206,57 +206,57 @@ function resolveSvg(...paths: string[]) {
 //   });
 // });
 
-describe("4. react icon repo", () => {
-  it("typescript file", async () => {
+describe('4. react icon repo', () => {
+  it('typescript file', async () => {
     await reactIconsGeneratorFromSVGDir({
       entry: ICON_ROOT_DIR,
-      output: resolve(OUTPUT_DIR, "src"),
+      output: resolve(OUTPUT_DIR, 'src'),
       typescript: true,
     });
     const generatedFiles = await globby([
-      resolve(OUTPUT_DIR, "**", "*.ts"),
-      resolve(OUTPUT_DIR, "**", "*.tsx"),
+      resolve(OUTPUT_DIR, '**', '*.ts'),
+      resolve(OUTPUT_DIR, '**', '*.tsx'),
     ]);
     expect(generatedFiles.sort()).toStrictEqual([
-      resolveOutput("./src/asn/LikeFilled.ts"),
-      resolveOutput("./src/asn/LikeOutlined.ts"),
-      resolveOutput("./src/asn/LikeTwoTone.ts"),
-      resolveOutput("./src/components/AntdIcon.tsx"),
-      resolveOutput("./src/components/Icon.tsx"),
-      resolveOutput("./src/components/IconBase.tsx"),
-      resolveOutput("./src/components/IconFont.tsx"),
-      resolveOutput("./src/components/twoTonePrimaryColor.ts"),
-      resolveOutput("./src/components/utils.ts"),
-      resolveOutput("./src/icons/LikeFilled.tsx"),
-      resolveOutput("./src/icons/LikeOutlined.tsx"),
-      resolveOutput("./src/icons/LikeTwoTone.tsx"),
-      resolveOutput("./src/index.ts"),
-      resolveOutput("./src/types.ts"),
+      resolveOutput('./src/asn/LikeFilled.ts'),
+      resolveOutput('./src/asn/LikeOutlined.ts'),
+      resolveOutput('./src/asn/LikeTwoTone.ts'),
+      resolveOutput('./src/components/AntdIcon.tsx'),
+      resolveOutput('./src/components/Icon.tsx'),
+      resolveOutput('./src/components/IconBase.tsx'),
+      resolveOutput('./src/components/IconFont.tsx'),
+      resolveOutput('./src/components/twoTonePrimaryColor.ts'),
+      resolveOutput('./src/components/utils.ts'),
+      resolveOutput('./src/icons/LikeFilled.tsx'),
+      resolveOutput('./src/icons/LikeOutlined.tsx'),
+      resolveOutput('./src/icons/LikeTwoTone.tsx'),
+      resolveOutput('./src/index.ts'),
+      resolveOutput('./src/types.ts'),
     ]);
   });
-  it("javascript file", async () => {
+  it('javascript file', async () => {
     await reactIconsGeneratorFromSVGDir({
       entry: ICON_ROOT_DIR,
-      output: resolve(OUTPUT_DIR, "src"),
+      output: resolve(OUTPUT_DIR, 'src'),
     });
     const generatedFiles = await globby([
-      resolve(OUTPUT_DIR, "**", "*.js"),
-      resolve(OUTPUT_DIR, "**", "*.jsx"),
+      resolve(OUTPUT_DIR, '**', '*.js'),
+      resolve(OUTPUT_DIR, '**', '*.jsx'),
     ]);
     expect(generatedFiles.sort()).toStrictEqual([
-      resolveOutput("./src/asn/LikeFilled.js"),
-      resolveOutput("./src/asn/LikeOutlined.js"),
-      resolveOutput("./src/asn/LikeTwoTone.js"),
-      resolveOutput("./src/components/AntdIcon.jsx"),
-      resolveOutput("./src/components/Icon.jsx"),
-      resolveOutput("./src/components/IconBase.jsx"),
-      resolveOutput("./src/components/IconFont.jsx"),
-      resolveOutput("./src/components/twoTonePrimaryColor.js"),
-      resolveOutput("./src/components/utils.js"),
-      resolveOutput("./src/icons/LikeFilled.jsx"),
-      resolveOutput("./src/icons/LikeOutlined.jsx"),
-      resolveOutput("./src/icons/LikeTwoTone.jsx"),
-      resolveOutput("./src/index.js"),
+      resolveOutput('./src/asn/LikeFilled.js'),
+      resolveOutput('./src/asn/LikeOutlined.js'),
+      resolveOutput('./src/asn/LikeTwoTone.js'),
+      resolveOutput('./src/components/AntdIcon.jsx'),
+      resolveOutput('./src/components/Icon.jsx'),
+      resolveOutput('./src/components/IconBase.jsx'),
+      resolveOutput('./src/components/IconFont.jsx'),
+      resolveOutput('./src/components/twoTonePrimaryColor.js'),
+      resolveOutput('./src/components/utils.js'),
+      resolveOutput('./src/icons/LikeFilled.jsx'),
+      resolveOutput('./src/icons/LikeOutlined.jsx'),
+      resolveOutput('./src/icons/LikeTwoTone.jsx'),
+      resolveOutput('./src/index.js'),
     ]);
   });
 });

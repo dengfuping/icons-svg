@@ -17,10 +17,10 @@ import {
   defaultTo,
   objOf,
   assoc,
-} from "ramda";
-import parseXML, { Element } from "@rgrove/parse-xml";
+} from 'ramda';
+import parseXML, { Element } from '@rgrove/parse-xml';
 
-import { ThemeType, AbstractNode } from "../../types";
+import { ThemeType, AbstractNode } from '../../types';
 
 export interface AbstractNodeDefinition {
   name: string;
@@ -42,7 +42,7 @@ export interface XML2AbstractNodeOptions extends SVG2DefinitionOptions {
   name: string;
 }
 
-export type TransformOptions = Pick<XML2AbstractNodeOptions, "name" | "theme">;
+export type TransformOptions = Pick<XML2AbstractNodeOptions, 'name' | 'theme'>;
 
 export interface TransformFactory {
   (options: TransformOptions): (asn: AbstractNode) => AbstractNode;
@@ -58,14 +58,13 @@ function element2AbstractNode({
       pipe(
         map((factory: TransformFactory) => factory({ name, theme })),
         reduce(
-          (transformedNode, extraTransformFn) =>
-            extraTransformFn(transformedNode),
+          (transformedNode, extraTransformFn) => extraTransformFn(transformedNode),
           applyTo({
             tag,
             attrs: clone(attributes),
             children: applyTo(children as Element[])(
               pipe(
-                filter<Element, "array">(where({ type: equals("element") })),
+                filter<Element, 'array'>(where({ type: equals('element') })),
                 map(
                   element2AbstractNode({
                     name,
@@ -80,7 +79,7 @@ function element2AbstractNode({
               where({
                 children: both(Array.isArray, pipe(length, greaterThan(__, 0))),
               }),
-              deleteProp("children")
+              deleteProp('children')
             )
           )
         )
@@ -133,7 +132,7 @@ export function asnGenerator(
 
       pipe(
         // @todo: "defaultTo" is not the best way to deal with the type Maybe<Element>
-        get<Element>(["children", 0]),
+        get<Element>(['children', 0]),
         defaultTo({} as any as Element)
       ),
 
@@ -174,7 +173,7 @@ export function asnGenerator(
       //   ]
       // }
 
-      pipe(objOf("icon"), assoc("name", name), assoc("theme", theme)),
+      pipe(objOf('icon'), assoc('name', name), assoc('theme', theme)),
       defaultTo(JSON.stringify)(stringify)
     )
   );
