@@ -2,7 +2,7 @@ import { assignAttrsAtTag } from '..';
 import { TransformFactory } from '../..';
 
 // icons with `0 0 1024 1024` viewBox
-const SPECIAL_ICON_NAMES = [
+const ICON_NAMES_1024 = [
   'settings',
   'douyin',
   'numeral',
@@ -15,6 +15,13 @@ const SPECIAL_ICON_NAMES = [
   'wifi',
 ];
 
+// icons with `0 0 12 12` viewBox
+const ICON_NAMES_12 = ['ellipsis-circle'];
+
 export const adjustViewBox: TransformFactory = assignAttrsAtTag('svg', ({ name }) => ({
-  viewBox: SPECIAL_ICON_NAMES.includes(name) ? '0 0 1024 1024' : '64 64 896 896',
+  viewBox: ICON_NAMES_1024.includes(name)
+    ? '0 0 1024 1024'
+    : ICON_NAMES_12.includes(name)
+    ? '0 0 12 12'
+    : '64 64 896 896',
 }));
