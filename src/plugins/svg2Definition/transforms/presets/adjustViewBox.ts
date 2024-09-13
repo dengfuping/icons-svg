@@ -15,13 +15,21 @@ const ICON_NAMES_1024 = [
   'wifi',
 ];
 
-// icons with `0 0 12 12` viewBox
-const ICON_NAMES_12 = ['ellipsis-circle'];
-
-export const adjustViewBox: TransformFactory = assignAttrsAtTag('svg', ({ name }) => ({
-  viewBox: ICON_NAMES_1024.includes(name)
-    ? '0 0 1024 1024'
-    : ICON_NAMES_12.includes(name)
-    ? '0 0 12 12'
-    : '64 64 896 896',
-}));
+export const adjustViewBox: TransformFactory = assignAttrsAtTag(
+  'svg',
+  ({ name, previousAttrs }) => {
+    let newViewBox;
+    if (previousAttrs.viewBox === '0 0 1024 1024') {
+      if (ICON_NAMES_1024.includes(name)) {
+        newViewBox = '0 0 1024 1024';
+      } else {
+        newViewBox = '64 64 896 896';
+      }
+    } else {
+      newViewBox = previousAttrs.viewBox;
+    }
+    return {
+      viewBox: newViewBox,
+    };
+  }
+);
