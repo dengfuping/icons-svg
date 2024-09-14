@@ -19,6 +19,7 @@ import { reactJsIconComponentRenderer, reactTsIconComponentRenderer } from './co
 const DEFAULT_SVG_CONFIG_MAP: { [key: string]: any } = {
   // match the directory name of icon type
   twotone: remainFillConfig,
+  gray: remainFillConfig,
   colored: remainFillConfig,
 };
 const SVG_CONFIG_MAP = new Proxy(DEFAULT_SVG_CONFIG_MAP, {

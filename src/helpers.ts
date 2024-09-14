@@ -27,7 +27,7 @@ export function renderIconDefinitionToSVGElement(
       options
     );
   }
-  // fill, outline, colored
+  // fill, outline, gray, colored
   return renderAbstractNodeToSVGElement(icond.icon, options);
 }
 

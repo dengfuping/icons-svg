@@ -17,6 +17,7 @@ Directory tree should be like below:
 │   ├── filled
 │   ├── outlined
 │   ├── twotone
+│   └── gray
 │   └── colored
 ```
 
