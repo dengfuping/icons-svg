@@ -3,10 +3,11 @@ import classNames from 'classnames';
 import ReactIcon from './IconBase';
 import { getTwoToneColor, setTwoToneColor } from './twoTonePrimaryColor';
 import { normalizeTwoToneColors } from './utils';
-// Initial setting
-// should move it to antd main repo?
-setTwoToneColor('#1890ff'); // https://github.com/DefinitelyTyped/DefinitelyTyped/issues/34757#issuecomment-488848720
 
+// Initial setting
+setTwoToneColor('#006aff');
+
+// https://github.com/DefinitelyTyped/DefinitelyTyped/issues/34757#issuecomment-488848720
 const Icon = React.forwardRef((props, ref) => {
   const {
     // affect outter <i>...</i>
