@@ -1,7 +1,8 @@
 import React from 'react';
 // import { insertCss } from 'insert-css';
-
-import { generate as generateColor } from '@ant-design/colors'; // import warn from 'rc-util/lib/warning';
+import { generate as generateColor } from '@ant-design/colors';
+// import warn from 'rc-util/lib/warning';
+import camelCase from 'lodash.camelcase';
 
 export function warning(valid, message) {
   //   warn(valid, `[@ant-design/icons] ${message}`);
@@ -28,14 +29,14 @@ export function normalizeAttrs(attrs = {}) {
         break;
 
       default:
-        acc[key] = val;
+        acc[camelCase(key)] = val;
     }
 
     return acc;
   }, {});
 }
 export function generate(node, key, rootProps) {
-  if (node.children?.length === 0 && node.text) {
+  if ((node.children?.length || 0) === 0 && node.text) {
     return node.text;
   }
   if (!rootProps) {
