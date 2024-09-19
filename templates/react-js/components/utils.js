@@ -35,6 +35,9 @@ export function normalizeAttrs(attrs = {}) {
   }, {});
 }
 export function generate(node, key, rootProps) {
+  if (node.children?.length === 0 && node.text) {
+    return node.text;
+  }
   if (!rootProps) {
     return React.createElement(
       node.tag,

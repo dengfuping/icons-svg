@@ -7,6 +7,7 @@ import {
   equals,
   gt as greaterThan,
   both,
+  or,
   unless,
   length,
   dissoc as deleteProp,
@@ -53,7 +54,14 @@ function element2AbstractNode({
   theme,
   extraNodeTransformFactories,
 }: XML2AbstractNodeOptions) {
-  return ({ name: tag, attributes, children }: Element): AbstractNode =>
+  return ({
+    type,
+    name: tag,
+    attributes,
+    children = [],
+    // @ts-ignore
+    text,
+  }: Element): AbstractNode =>
     applyTo(extraNodeTransformFactories)(
       pipe(
         map((factory: TransformFactory) => factory({ name, theme })),
@@ -62,9 +70,10 @@ function element2AbstractNode({
           applyTo({
             tag,
             attrs: clone(attributes),
+            text,
             children: applyTo(children as Element[])(
               pipe(
-                filter<Element, 'array'>(where({ type: equals('element') })),
+                filter<Element, 'array'>(where({ type: or((equals('element'), equals('text'))) })),
                 map(
                   element2AbstractNode({
                     name,

@@ -5,7 +5,7 @@ import upperFirst from 'lodash.upperfirst';
 import chalk from 'chalk';
 
 import { asnGenerator } from './plugins/svg2Definition';
-import { generalConfig, remainFillConfig } from './plugins/svgo/presets';
+import { getGeneralConfig, getRemainFillConfig } from './plugins/svgo/presets';
 import {
   assignAttrsAtTag,
   adjustViewBox,
@@ -16,20 +16,11 @@ import { ThemeType } from './types';
 import { getNameAndThemeFromPath, getIdentifier, ext } from './utils';
 import { reactJsIconComponentRenderer, reactTsIconComponentRenderer } from './constant';
 
-const DEFAULT_SVG_CONFIG_MAP: { [key: string]: any } = {
-  // match the directory name of icon type
-  twotone: remainFillConfig,
-  gray: remainFillConfig,
-  colored: remainFillConfig,
+const getSvgConfig = (name: string, theme: string) => {
+  const remainFillConfig = getRemainFillConfig(name, theme);
+  const generalConfig = getGeneralConfig(name, theme);
+  return ['twotone', 'gray', 'colored'].includes(theme) ? remainFillConfig : generalConfig;
 };
-const SVG_CONFIG_MAP = new Proxy(DEFAULT_SVG_CONFIG_MAP, {
-  get(target, key: ThemeType) {
-    if (target[key]) {
-      return target[key];
-    }
-    return generalConfig;
-  },
-});
 
 /**
  * transform svg to js object
@@ -38,7 +29,8 @@ const SVG_CONFIG_MAP = new Proxy(DEFAULT_SVG_CONFIG_MAP, {
  * @param {string} theme - svg theme
  */
 export async function svg2asn(svg: string, name: string, theme: string) {
-  const optimizer = new SVGO(SVG_CONFIG_MAP[theme]);
+  const svgConfig = getSvgConfig(name, theme);
+  const optimizer = new SVGO(svgConfig);
   const { data } = await optimizer.optimize(svg);
 
   if (theme === 'twotone') {

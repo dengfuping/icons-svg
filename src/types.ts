@@ -4,6 +4,7 @@ export interface AbstractNode {
     [key: string]: string;
   };
   children?: AbstractNode[];
+  text?: string;
 }
 
 export interface IconDefinition {

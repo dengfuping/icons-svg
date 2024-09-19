@@ -13,20 +13,22 @@ const ICON_NAMES_1024 = [
   'sql',
   'timer',
   'wifi',
+  'datasource',
+  'code-slash',
 ];
 
 export const adjustViewBox: TransformFactory = assignAttrsAtTag(
   'svg',
   ({ name, previousAttrs }) => {
     let newViewBox;
-    if (previousAttrs.viewBox === '0 0 1024 1024') {
+    if (previousAttrs?.viewBox === '0 0 1024 1024') {
       if (ICON_NAMES_1024.includes(name)) {
         newViewBox = '0 0 1024 1024';
       } else {
         newViewBox = '64 64 896 896';
       }
     } else {
-      newViewBox = previousAttrs.viewBox;
+      newViewBox = previousAttrs?.viewBox;
     }
     return {
       viewBox: newViewBox,

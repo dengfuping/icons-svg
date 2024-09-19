@@ -44,6 +44,9 @@ export function generate(
   key: string,
   rootProps?: { [key: string]: any } | false
 ): any {
+  if (node.children?.length === 0 && node.text) {
+    return node.text;
+  }
   if (!rootProps) {
     return React.createElement(
       node.tag,
