@@ -18,7 +18,7 @@ import { reactJsIconComponentRenderer, reactTsIconComponentRenderer } from './co
 const getSvgConfig = (name: string, theme: string) => {
   const remainFillConfig = getRemainFillConfig(name, theme);
   const generalConfig = getGeneralConfig(name, theme);
-  return ['twotone', 'colored'].includes(theme) ? remainFillConfig : generalConfig;
+  return ['filled', 'twotone', 'colored'].includes(theme) ? remainFillConfig : generalConfig;
 };
 
 /**
