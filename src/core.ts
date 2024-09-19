@@ -12,14 +12,13 @@ import {
   setDefaultColorAtPathTag,
 } from './plugins/svg2Definition/transforms';
 import { twotoneStringify } from './plugins/svg2Definition/stringify';
-import { ThemeType } from './types';
 import { getNameAndThemeFromPath, getIdentifier, ext } from './utils';
 import { reactJsIconComponentRenderer, reactTsIconComponentRenderer } from './constant';
 
 const getSvgConfig = (name: string, theme: string) => {
   const remainFillConfig = getRemainFillConfig(name, theme);
   const generalConfig = getGeneralConfig(name, theme);
-  return ['twotone', 'gray', 'colored'].includes(theme) ? remainFillConfig : generalConfig;
+  return ['twotone', 'colored'].includes(theme) ? remainFillConfig : generalConfig;
 };
 
 /**

@@ -4,6 +4,7 @@ import { statSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
 import upperFirst from 'lodash.upperfirst';
 import camelCase from 'lodash.camelcase';
 import { pipe } from 'ramda';
+import { themeTypeList } from './types';
 
 export interface IdentifierMeta {
   name: string;
@@ -19,7 +20,6 @@ export interface GetIdentifierType {
  * like + Outlined -> LikeOutlined
  * like + Filled -> LikeFilled
  * like + TowTone -> LikeTowTone
- * like + Gray -> LikeGray
  * like + Colored -> LikeColored
  */
 export const getIdentifier: GetIdentifierType = pipe(
@@ -36,10 +36,19 @@ export const getIdentifier: GetIdentifierType = pipe(
 export function getNameAndThemeFromPath(filepath: string) {
   const { name, dir } = parse(filepath);
   const theme = basename(dir);
-  return {
-    name,
-    theme,
-  };
+  if (themeTypeList.includes(theme)) {
+    return {
+      name,
+      theme,
+    };
+  } else {
+    // 主题目录下支持嵌套二级目录，用于对图标进行分类
+    const newTheme = basename(dirname(dir));
+    return {
+      name,
+      theme: newTheme,
+    };
+  }
 }
 
 /**
