@@ -38,7 +38,7 @@ function renderAbstractNodeToSVGElement(node: AbstractNode, options: HelperRende
           ...node.attrs,
           ...(options.extraSVGAttrs || {}),
         }
-      : node.attrs;
+      : node.attrs || {};
   const attrs = Object.keys(targetAttrs).reduce((acc: string[], nextKey) => {
     const key = nextKey;
     const value = targetAttrs[key];
